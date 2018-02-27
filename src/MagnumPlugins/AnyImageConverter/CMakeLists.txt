@@ -23,6 +23,8 @@
 #   DEALINGS IN THE SOFTWARE.
 #
 
+find_package(Corrade REQUIRED PluginManager)
+
 if(BUILD_STATIC)
     set(MAGNUM_ANYIMAGECONVERTER_BUILD_STATIC 1)
 endif()
@@ -41,7 +43,8 @@ add_library(AnyImageConverterObjects OBJECT
     ${AnyImageConverter_SRCS}
     ${AnyImageConverter_HEADERS})
 target_include_directories(AnyImageConverterObjects PUBLIC
-    $<TARGET_PROPERTY:Magnum,INTERFACE_INCLUDE_DIRECTORIES>)
+    $<TARGET_PROPERTY:Magnum,INTERFACE_INCLUDE_DIRECTORIES>
+    $<TARGET_PROPERTY:MagnumTrade,INTERFACE_INCLUDE_DIRECTORIES>)
 target_compile_definitions(AnyImageConverterObjects PRIVATE "AnyImageConverterObjects_EXPORTS")
 if(NOT BUILD_STATIC OR BUILD_STATIC_PIC)
     set_target_properties(AnyImageConverterObjects PROPERTIES POSITION_INDEPENDENT_CODE ON)
@@ -61,7 +64,9 @@ endif()
 target_include_directories(AnyImageConverter PUBLIC
     ${PROJECT_SOURCE_DIR}/src
     ${PROJECT_BINARY_DIR}/src)
-target_link_libraries(AnyImageConverter PUBLIC Magnum)
+target_link_libraries(AnyImageConverter PUBLIC
+    Magnum
+    MagnumTrade)
 
 install(FILES ${AnyImageConverter_HEADERS} DESTINATION ${MAGNUM_PLUGINS_INCLUDE_INSTALL_DIR}/AnyImageConverter)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/configure.h DESTINATION ${MAGNUM_PLUGINS_INCLUDE_INSTALL_DIR}/AnyImageConverter)
@@ -82,7 +87,9 @@ if(BUILD_TESTS)
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_BINARY_DIR}/src)
     set_target_properties(MagnumAnyImageConverterTestLib PROPERTIES FOLDER "MagnumPlugins/AnyImageConverter")
-    target_link_libraries(MagnumAnyImageConverterTestLib PUBLIC Magnum)
+    target_link_libraries(MagnumAnyImageConverterTestLib PUBLIC
+        Magnum
+        MagnumTrade)
     add_subdirectory(Test)
 endif()
 

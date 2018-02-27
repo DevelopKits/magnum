@@ -23,6 +23,8 @@
 #   DEALINGS IN THE SOFTWARE.
 #
 
+find_package(Corrade REQUIRED PluginManager)
+
 if(BUILD_PLUGINS_STATIC)
     set(MAGNUM_OBJIMPORTER_BUILD_STATIC 1)
 endif()
@@ -40,7 +42,9 @@ set(ObjImporter_HEADERS
 add_library(ObjImporterObjects OBJECT
     ${ObjImporter_SRCS}
     ${ObjImporter_HEADERS})
-target_include_directories(ObjImporterObjects PUBLIC $<TARGET_PROPERTY:Magnum,INTERFACE_INCLUDE_DIRECTORIES>)
+target_include_directories(ObjImporterObjects PUBLIC
+    $<TARGET_PROPERTY:Magnum,INTERFACE_INCLUDE_DIRECTORIES>
+    $<TARGET_PROPERTY:MagnumTrade,INTERFACE_INCLUDE_DIRECTORIES>)
 if(NOT BUILD_PLUGINS_STATIC)
     target_compile_definitions(ObjImporterObjects PRIVATE "ObjImporterObjects_EXPORTS")
 endif()
@@ -59,7 +63,10 @@ add_plugin(ObjImporter
 if(BUILD_STATIC_PIC)
     set_target_properties(ObjImporter PROPERTIES POSITION_INDEPENDENT_CODE ON)
 endif()
-target_link_libraries(ObjImporter Magnum MagnumMeshTools)
+target_link_libraries(ObjImporter PUBLIC
+    Magnum
+    MagnumMeshTools
+    MagnumTrade)
 
 install(FILES ${ObjImporter_HEADERS} DESTINATION ${MAGNUM_PLUGINS_INCLUDE_INSTALL_DIR}/ObjImporter)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/configure.h DESTINATION ${MAGNUM_PLUGINS_INCLUDE_INSTALL_DIR}/ObjImporter)
@@ -77,7 +84,10 @@ if(BUILD_TESTS)
         $<TARGET_OBJECTS:ObjImporterObjects>
         ${PROJECT_SOURCE_DIR}/src/dummy.cpp) # XCode workaround, see file comment for details
     set_target_properties(MagnumObjImporterTestLib PROPERTIES FOLDER "MagnumPlugins/ObjImporter")
-    target_link_libraries(MagnumObjImporterTestLib Magnum MagnumMeshTools)
+    target_link_libraries(MagnumObjImporterTestLib PUBLIC
+        Magnum
+        MagnumMeshTools
+        MagnumTrade)
 
     add_subdirectory(Test)
 endif()

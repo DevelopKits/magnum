@@ -31,7 +31,7 @@
 
 #include "Magnum/Array.h"
 #include "Magnum/Sampler.h"
-#include "Magnum/visibility.h"
+#include "Magnum/Trade/visibility.h"
 
 namespace Magnum { namespace Trade {
 
@@ -119,7 +119,7 @@ class TextureData {
 };
 
 /** @debugoperatorclassenum{Magnum::Trade::TextureData,Magnum::Trade::TextureData::Type} */
-MAGNUM_EXPORT Debug& operator<<(Debug& debug, TextureData::Type value);
+MAGNUM_TRADE_EXPORT Debug& operator<<(Debug& debug, TextureData::Type value);
 
 }}
 

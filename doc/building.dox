@@ -405,8 +405,10 @@ be built and which not:
 -   `WITH_AUDIO` --- Build the @ref Audio library. Depends on
     [OpenAL](https://www.openal.org/), not built by default.
 -   `WITH_DEBUGTOOLS` --- Build the @ref DebugTools library.
--   `WITH_MESHTOOLS` --- Build the @ref MeshTools library.
--   `WITH_PRIMITIVES` --- Build the @ref Primitives library.
+-   `WITH_MESHTOOLS` --- Build the @ref MeshTools library. Enables also
+    building of the Trade library.
+-   `WITH_PRIMITIVES` --- Build the @ref Primitives library. Enables also
+    building of the Trade library.
 -   `WITH_SCENEGRAPH` --- Build the @ref SceneGraph library. Enabled
     automatically if `WITH_SHAPES` is enabled.
 -   `WITH_SHADERS` --- Build the @ref Shaders library.
@@ -417,6 +419,7 @@ be built and which not:
     the TextureTools library.
 -   `WITH_TEXTURETOOLS` --- Build the @ref TextureTools library. Enabled
     automatically if `WITH_TEXT` or `WITH_DISTANCEFIELDCONVERTER` is enabled.
+-   `WITH_TRADE` --- Build the @ref Trade library
 
 There are more involved component dependencies that are not described here (for
 example the @ref DebugTools has some functionality that gets built only when

@@ -33,6 +33,7 @@
 
 #include "Magnum/Magnum.h"
 #include "Magnum/Math/Matrix3.h"
+#include "Magnum/Trade/visibility.h"
 
 namespace Magnum { namespace Trade {
 
@@ -59,7 +60,7 @@ enum class ObjectInstanceType2D: UnsignedByte {
 Provides access to object transformation and hierarchy.
 @see @ref MeshObjectData2D, @ref ObjectData3D
 */
-class MAGNUM_EXPORT ObjectData2D {
+class MAGNUM_TRADE_EXPORT ObjectData2D {
     public:
         /**
          * @brief Constructor
@@ -147,7 +148,7 @@ class MAGNUM_EXPORT ObjectData2D {
 };
 
 /** @debugoperatorenum{Magnum::Trade::ObjectInstanceType2D} */
-MAGNUM_EXPORT Debug& operator<<(Debug& debug, ObjectInstanceType2D value);
+MAGNUM_TRADE_EXPORT Debug& operator<<(Debug& debug, ObjectInstanceType2D value);
 
 }}
 
