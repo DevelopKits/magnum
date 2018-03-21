@@ -26,7 +26,7 @@
 */
 
 /** @file
- * @brief Class @ref Magnum::Buffer, enum @ref Magnum::BufferUsage
+ * @brief Class @ref Magnum::GL::Buffer, enum @ref Magnum::GL::BufferUsage
  */
 
 #include <cstddef>
@@ -45,7 +45,7 @@
 #include <Corrade/Utility/Macros.h>
 #endif
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 /**
 @brief Buffer usage
@@ -1381,6 +1381,6 @@ template<class T> Containers::Array<T> inline Buffer::subData(const GLintptr off
 #endif
 #endif
 
-}
+}}
 
 #endif

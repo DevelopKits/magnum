@@ -41,7 +41,7 @@
 #include "Magnum/GL/Implementation/MeshState.h"
 #include "Magnum/GL/Implementation/State.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 struct Mesh::AttributeLayout {
     explicit AttributeLayout(const Buffer& buffer, GLuint location, GLint size, GLenum type, DynamicAttribute::Kind kind, GLintptr offset, GLsizei stride, GLuint divisor) noexcept: buffer{Buffer::wrap(buffer.id())}, location{location}, size{size}, type{type}, kind{kind}, offset{offset}, stride{stride}, divisor{divisor} {}
@@ -633,7 +633,7 @@ void Mesh::drawElementsInstancedImplementationNV(const GLsizei count, const GLin
 Debug& operator<<(Debug& debug, MeshPrimitive value) {
     switch(value) {
         /* LCOV_EXCL_START */
-        #define _c(value) case MeshPrimitive::value: return debug << "MeshPrimitive::" #value;
+        #define _c(value) case MeshPrimitive::value: return debug << "GL::MeshPrimitive::" #value;
         _c(Points)
         _c(LineStrip)
         _c(LineLoop)
@@ -654,13 +654,13 @@ Debug& operator<<(Debug& debug, MeshPrimitive value) {
         /* LCOV_EXCL_STOP */
     }
 
-    return debug << "MeshPrimitive(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
+    return debug << "GL::MeshPrimitive(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
 }
 
 Debug& operator<<(Debug& debug, Mesh::IndexType value) {
     switch(value) {
         /* LCOV_EXCL_START */
-        #define _c(value) case Mesh::IndexType::value: return debug << "Mesh::IndexType::" #value;
+        #define _c(value) case Mesh::IndexType::value: return debug << "GL::Mesh::IndexType::" #value;
         _c(UnsignedByte)
         _c(UnsignedShort)
         _c(UnsignedInt)
@@ -668,17 +668,17 @@ Debug& operator<<(Debug& debug, Mesh::IndexType value) {
         /* LCOV_EXCL_STOP */
     }
 
-    return debug << "Mesh::IndexType(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
+    return debug << "GL::Mesh::IndexType(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
 }
 #endif
 
-}
+}}
 
 namespace Corrade { namespace Utility {
 
-std::string ConfigurationValue<Magnum::MeshPrimitive>::toString(Magnum::MeshPrimitive value, ConfigurationValueFlags) {
+std::string ConfigurationValue<Magnum::GL::MeshPrimitive>::toString(Magnum::GL::MeshPrimitive value, ConfigurationValueFlags) {
     switch(value) {
-        #define _c(value) case Magnum::MeshPrimitive::value: return #value;
+        #define _c(value) case Magnum::GL::MeshPrimitive::value: return #value;
         _c(Points)
         _c(LineStrip)
         _c(LineLoop)
@@ -701,8 +701,8 @@ std::string ConfigurationValue<Magnum::MeshPrimitive>::toString(Magnum::MeshPrim
     return {};
 }
 
-Magnum::MeshPrimitive ConfigurationValue<Magnum::MeshPrimitive>::fromString(const std::string& stringValue, ConfigurationValueFlags) {
-    #define _c(value) if(stringValue == #value) return Magnum::MeshPrimitive::value;
+Magnum::GL::MeshPrimitive ConfigurationValue<Magnum::GL::MeshPrimitive>::fromString(const std::string& stringValue, ConfigurationValueFlags) {
+    #define _c(value) if(stringValue == #value) return Magnum::GL::MeshPrimitive::value;
     _c(LineStrip)
     _c(LineLoop)
     _c(Lines)
@@ -720,12 +720,12 @@ Magnum::MeshPrimitive ConfigurationValue<Magnum::MeshPrimitive>::fromString(cons
     #endif
     #undef _c
 
-    return Magnum::MeshPrimitive::Points;
+    return Magnum::GL::MeshPrimitive::Points;
 }
 
-std::string ConfigurationValue<Magnum::Mesh::IndexType>::toString(Magnum::Mesh::IndexType value, ConfigurationValueFlags) {
+std::string ConfigurationValue<Magnum::GL::Mesh::IndexType>::toString(Magnum::GL::Mesh::IndexType value, ConfigurationValueFlags) {
     switch(value) {
-        #define _c(value) case Magnum::Mesh::IndexType::value: return #value;
+        #define _c(value) case Magnum::GL::Mesh::IndexType::value: return #value;
         _c(UnsignedByte)
         _c(UnsignedShort)
         _c(UnsignedInt)
@@ -735,14 +735,14 @@ std::string ConfigurationValue<Magnum::Mesh::IndexType>::toString(Magnum::Mesh::
     return {};
 }
 
-Magnum::Mesh::IndexType ConfigurationValue<Magnum::Mesh::IndexType>::fromString(const std::string& stringValue, ConfigurationValueFlags) {
-    #define _c(value) if(stringValue == #value) return Magnum::Mesh::IndexType::value;
+Magnum::GL::Mesh::IndexType ConfigurationValue<Magnum::GL::Mesh::IndexType>::fromString(const std::string& stringValue, ConfigurationValueFlags) {
+    #define _c(value) if(stringValue == #value) return Magnum::GL::Mesh::IndexType::value;
     _c(UnsignedByte)
     _c(UnsignedShort)
     _c(UnsignedInt)
     #undef _c
 
-    return Magnum::Mesh::IndexType::UnsignedInt;
+    return Magnum::GL::Mesh::IndexType::UnsignedInt;
 }
 
 }}

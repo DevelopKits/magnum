@@ -26,12 +26,12 @@
 */
 
 /** @file
- * @brief Class @ref Magnum::DefaultFramebuffer
+ * @brief Class @ref Magnum::GL::DefaultFramebuffer
  */
 
 #include "Magnum/GL/AbstractFramebuffer.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 /**
 @brief Default framebuffer
@@ -509,6 +509,6 @@ extern DefaultFramebuffer MAGNUM_GL_EXPORT defaultFramebuffer;
 /** @debugoperatorclassenum{Magnum::DefaultFramebuffer,Magnum::DefaultFramebuffer::Status} */
 MAGNUM_GL_EXPORT Debug& operator<<(Debug& debug, DefaultFramebuffer::Status value);
 
-}
+}}
 
 #endif

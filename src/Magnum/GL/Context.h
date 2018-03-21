@@ -26,7 +26,7 @@
 */
 
 /** @file
- * @brief Class @ref Magnum::Context, @ref Magnum::Extension, macro @ref MAGNUM_ASSERT_VERSION_SUPPORTED(), @ref MAGNUM_ASSERT_EXTENSION_SUPPORTED()
+ * @brief Class @ref Magnum::GL::Context, @ref Magnum::GL::Extension, macro @ref MAGNUM_ASSERT_VERSION_SUPPORTED(), @ref MAGNUM_ASSERT_EXTENSION_SUPPORTED()
  */
 
 #include <cstdlib>
@@ -45,6 +45,10 @@
 
 namespace Magnum {
 
+namespace Platform { class Context; }
+
+namespace GL {
+
 namespace Implementation {
     struct ContextState;
     struct State;
@@ -60,8 +64,6 @@ namespace Implementation {
             #endif
     };
 }
-
-namespace Platform { class Context; }
 
 /**
 @brief Run-time information about OpenGL extension
@@ -745,6 +747,6 @@ Example usage:
     } while(0)
 #endif
 
-}
+}}
 
 #endif

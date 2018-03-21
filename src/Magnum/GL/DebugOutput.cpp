@@ -34,7 +34,7 @@
 #include "Magnum/GL/Implementation/State.h"
 #include "Magnum/GL/Implementation/DebugState.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 namespace {
 
@@ -389,5 +389,5 @@ Debug& operator<<(Debug& debug, const DebugGroup::Source value) {
 }
 #endif
 
-}
+}}
 #endif

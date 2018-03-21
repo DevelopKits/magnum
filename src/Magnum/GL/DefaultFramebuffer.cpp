@@ -35,7 +35,7 @@
 #include "Magnum/Math/Color.h"
 #endif
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 DefaultFramebuffer defaultFramebuffer;
 
@@ -151,4 +151,4 @@ Debug& operator<<(Debug& debug, const DefaultFramebuffer::Status value) {
 }
 #endif
 
-}
+}}

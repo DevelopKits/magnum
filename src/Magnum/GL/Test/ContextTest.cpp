@@ -54,7 +54,7 @@ ContextTest::ContextTest() {
 }
 
 void ContextTest::extensions() {
-    const char* used[Implementation::ExtensionCount]{};
+    const char* used[GL::Implementation::ExtensionCount]{};
 
     /* Check that all extension indices are unique */
     for(Version version: {
@@ -81,9 +81,9 @@ void ContextTest::extensions() {
         Version::None})
     {
         for(const Extension& e: Extension::extensions(version)) {
-            if(e.index() >= Implementation::ExtensionCount) {
+            if(e.index() >= GL::Implementation::ExtensionCount) {
                 Error{} << "Index" << e.index() << "used by" << e.string()
-                        << "larger than" << Implementation::ExtensionCount;
+                        << "larger than" << GL::Implementation::ExtensionCount;
                 CORRADE_VERIFY(false);
             }
 

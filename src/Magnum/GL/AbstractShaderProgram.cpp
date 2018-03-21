@@ -37,7 +37,7 @@
 #include "Magnum/GL/Implementation/State.h"
 #include "Magnum/Math/RectangularMatrix.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 namespace Implementation {
     /* Defined in Implementation/driverSpecific.cpp */
@@ -1103,4 +1103,4 @@ void AbstractShaderProgram::uniformImplementationDSAEXT(const GLint location, co
 }
 #endif
 
-}
+}}

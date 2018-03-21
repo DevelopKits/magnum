@@ -35,7 +35,7 @@
 #include "Magnum/GL/OpenGL.h"
 #include "Magnum/GL/visibility.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 namespace Implementation { template<class> struct Attribute; }
 
@@ -795,6 +795,6 @@ template<class T> struct Attribute<Math::Matrix4<T>>: Attribute<Math::Matrix<4, 
 
 }
 
-}
+}}
 
 #endif

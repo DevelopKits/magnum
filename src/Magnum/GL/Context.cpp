@@ -61,7 +61,7 @@
 #include "Magnum/GL/Implementation/TransformFeedbackState.h"
 #endif
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 const std::vector<Extension>& Extension::extensions(Version version) {
     #define _extension(prefix, vendor, extension)                           \
@@ -574,7 +574,7 @@ bool Context::tryCreate() {
     #endif
 
     /* Compose the version enum */
-    _version = Magnum::version(majorVersion, minorVersion);
+    _version = GL::version(majorVersion, minorVersion);
 
     /* Check that version retrieval went right */
     #ifndef CORRADE_NO_ASSERT
@@ -955,4 +955,4 @@ Debug& operator<<(Debug& debug, const Context::DetectedDrivers value) {
 }
 #endif
 
-}
+}}

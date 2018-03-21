@@ -70,14 +70,14 @@ template<UnsignedInt dimensions> class ImageView {
          * The data are expected to be of proper size for given @p storage
          * parameters.
          */
-        explicit ImageView(PixelStorage storage, PixelFormat format, PixelType type, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept: _storage{storage}, _format{format}, _type{type}, _size{size}, _data{reinterpret_cast<const char*>(data.data()), data.size()} {
+        explicit ImageView(PixelStorage storage, GL::PixelFormat format, GL::PixelType type, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept: _storage{storage}, _format{format}, _type{type}, _size{size}, _data{reinterpret_cast<const char*>(data.data()), data.size()} {
             CORRADE_ASSERT(!_data || Implementation::imageDataSize(*this) <= _data.size(), "ImageView::ImageView(): bad image data size, got" << _data.size() << "but expected at least" << Implementation::imageDataSize(*this), );
         }
 
         /** @overload
          * Similar to the above, but uses default @ref PixelStorage parameters.
          */
-        explicit ImageView(PixelFormat format, PixelType type, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept: ImageView{{}, format, type, size, data} {}
+        explicit ImageView(GL::PixelFormat format, GL::PixelType type, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept: ImageView{{}, format, type, size, data} {}
 
         /**
          * @brief Constructor
@@ -89,21 +89,21 @@ template<UnsignedInt dimensions> class ImageView {
          * Data pointer is set to @cpp nullptr @ce, call @ref setData() to fill
          * the image with data.
          */
-        constexpr explicit ImageView(PixelStorage storage, PixelFormat format, PixelType type, const VectorTypeFor<dimensions, Int>& size) noexcept: _storage{storage}, _format{format}, _type{type}, _size{size}, _data{nullptr} {}
+        constexpr explicit ImageView(PixelStorage storage, GL::PixelFormat format, GL::PixelType type, const VectorTypeFor<dimensions, Int>& size) noexcept: _storage{storage}, _format{format}, _type{type}, _size{size}, _data{nullptr} {}
 
         /** @overload
          * Similar to the above, but uses default @ref PixelStorage parameters.
          */
-        constexpr explicit ImageView(PixelFormat format, PixelType type, const VectorTypeFor<dimensions, Int>& size) noexcept: ImageView{{}, format, type, size} {}
+        constexpr explicit ImageView(GL::PixelFormat format, GL::PixelType type, const VectorTypeFor<dimensions, Int>& size) noexcept: ImageView{{}, format, type, size} {}
 
         /** @brief Storage of pixel data */
         PixelStorage storage() const { return _storage; }
 
         /** @brief Format of pixel data */
-        PixelFormat format() const { return _format; }
+        GL::PixelFormat format() const { return _format; }
 
         /** @brief Data type of pixel data */
-        PixelType type() const { return _type; }
+        GL::PixelType type() const { return _type; }
 
         /**
          * @brief Pixel size (in bytes)
@@ -147,8 +147,8 @@ template<UnsignedInt dimensions> class ImageView {
 
     private:
         PixelStorage _storage;
-        PixelFormat _format;
-        PixelType _type;
+        GL::PixelFormat _format;
+        GL::PixelType _type;
         Math::Vector<Dimensions, Int> _size;
         Containers::ArrayView<const char> _data;
 };
@@ -190,7 +190,7 @@ template<UnsignedInt dimensions> class CompressedImageView {
          * @requires_gl Compressed pixel storage is hardcoded in OpenGL ES and
          *      WebGL.
          */
-        constexpr explicit CompressedImageView(CompressedPixelStorage storage, CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept;
+        constexpr explicit CompressedImageView(CompressedPixelStorage storage, GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept;
         #endif
 
         /**
@@ -202,7 +202,7 @@ template<UnsignedInt dimensions> class CompressedImageView {
          * Similar the above, but uses default @ref CompressedPixelStorage
          * parameters (or the hardcoded ones in OpenGL ES and WebGL).
          */
-        constexpr explicit CompressedImageView(CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept;
+        constexpr explicit CompressedImageView(GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, Containers::ArrayView<const void> data) noexcept;
 
         #ifndef MAGNUM_TARGET_GLES
         /**
@@ -217,7 +217,7 @@ template<UnsignedInt dimensions> class CompressedImageView {
          * @requires_gl Compressed pixel storage is hardcoded in OpenGL ES and
          *      WebGL.
          */
-        constexpr explicit CompressedImageView(CompressedPixelStorage storage, CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept;
+        constexpr explicit CompressedImageView(CompressedPixelStorage storage, GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept;
         #endif
 
         /**
@@ -228,7 +228,7 @@ template<UnsignedInt dimensions> class CompressedImageView {
          * Similar the above, but uses default @ref CompressedPixelStorage
          * parameters (or the hardcoded ones in OpenGL ES and WebGL).
          */
-        constexpr explicit CompressedImageView(CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept;
+        constexpr explicit CompressedImageView(GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept;
 
         #ifndef MAGNUM_TARGET_GLES
         /**
@@ -242,7 +242,7 @@ template<UnsignedInt dimensions> class CompressedImageView {
         #endif
 
         /** @brief Format of compressed data */
-        CompressedPixelFormat format() const { return _format; }
+        GL::CompressedPixelFormat format() const { return _format; }
 
         /** @brief Image size */
         constexpr VectorTypeFor<dimensions, Int> size() const { return _size; }
@@ -286,7 +286,7 @@ template<UnsignedInt dimensions> class CompressedImageView {
         #ifndef MAGNUM_TARGET_GLES
         CompressedPixelStorage _storage;
         #endif
-        CompressedPixelFormat _format;
+        GL::CompressedPixelFormat _format;
         Math::Vector<Dimensions, Int> _size;
         Containers::ArrayView<const char> _data;
 };
@@ -304,7 +304,7 @@ template<UnsignedInt dimensions> constexpr CompressedImageView<dimensions>::Comp
     #ifndef MAGNUM_TARGET_GLES
     const CompressedPixelStorage storage,
     #endif
-    const CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, const Containers::ArrayView<const void> data) noexcept:
+    const GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, const Containers::ArrayView<const void> data) noexcept:
     #ifndef MAGNUM_TARGET_GLES
     _storage{storage},
     #endif
@@ -314,16 +314,16 @@ template<UnsignedInt dimensions> constexpr CompressedImageView<dimensions>::Comp
     #ifndef MAGNUM_TARGET_GLES
     const CompressedPixelStorage storage,
     #endif
-    const CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept:
+    const GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept:
     #ifndef MAGNUM_TARGET_GLES
     _storage{storage},
     #endif
     _format{format}, _size{size} {}
 
 #ifndef MAGNUM_TARGET_GLES
-template<UnsignedInt dimensions> constexpr CompressedImageView<dimensions>::CompressedImageView(const CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, const Containers::ArrayView<const void> data) noexcept: CompressedImageView{{}, format, size, data} {}
+template<UnsignedInt dimensions> constexpr CompressedImageView<dimensions>::CompressedImageView(const GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size, const Containers::ArrayView<const void> data) noexcept: CompressedImageView{{}, format, size, data} {}
 
-template<UnsignedInt dimensions> constexpr CompressedImageView<dimensions>::CompressedImageView(const CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept: CompressedImageView{{}, format, size} {}
+template<UnsignedInt dimensions> constexpr CompressedImageView<dimensions>::CompressedImageView(const GL::CompressedPixelFormat format, const VectorTypeFor<dimensions, Int>& size) noexcept: CompressedImageView{{}, format, size} {}
 #endif
 
 }

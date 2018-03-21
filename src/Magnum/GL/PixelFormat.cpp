@@ -27,7 +27,7 @@
 
 #include <Corrade/Utility/Debug.h>
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 #ifndef DOXYGEN_GENERATING_OUTPUT
 Debug& operator<<(Debug& debug, const PixelFormat value) {
@@ -85,7 +85,7 @@ Debug& operator<<(Debug& debug, const PixelFormat value) {
         /* LCOV_EXCL_STOP */
     }
 
-    return debug << "PixelFormat(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
+    return debug << "GL::PixelFormat(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
 }
 
 Debug& operator<<(Debug& debug, const PixelType value) {
@@ -142,7 +142,7 @@ Debug& operator<<(Debug& debug, const PixelType value) {
         /* LCOV_EXCL_STOP */
     }
 
-    return debug << "PixelType(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
+    return debug << "GL::PixelType(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
 }
 
 Debug& operator<<(Debug& debug, const CompressedPixelFormat value) {
@@ -213,8 +213,8 @@ Debug& operator<<(Debug& debug, const CompressedPixelFormat value) {
         /* LCOV_EXCL_STOP */
     }
 
-    return debug << "CompressedPixelFormat(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
+    return debug << "GL::CompressedPixelFormat(" << Debug::nospace << reinterpret_cast<void*>(GLenum(value)) << Debug::nospace << ")";
 }
 #endif
 
-}
+}}

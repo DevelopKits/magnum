@@ -43,7 +43,7 @@
 typedef char GLchar;
 #endif
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 namespace Implementation {
     /* defined in Implementation/driverSpecific.cpp */
@@ -831,4 +831,4 @@ Debug& operator<<(Debug& debug, const Shader::Type value) {
 }
 #endif
 
-}
+}}

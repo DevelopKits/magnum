@@ -33,7 +33,7 @@
 #include "Magnum/GL/Implementation/State.h"
 #include "Magnum/GL/Implementation/RendererState.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 void Renderer::enable(const Feature feature) {
     glEnable(GLenum(feature));
@@ -284,4 +284,4 @@ Debug& operator<<(Debug& debug, const Renderer::GraphicsResetStatus value) {
 #endif
 #endif
 
-}
+}}

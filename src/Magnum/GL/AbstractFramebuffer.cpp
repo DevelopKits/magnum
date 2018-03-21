@@ -45,7 +45,7 @@
 #include "Magnum/GL/Implementation/FramebufferState.h"
 #include "Magnum/GL/Implementation/State.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 Vector2i AbstractFramebuffer::maxViewportSize() {
     Vector2i& value = Context::current().state().framebuffer->maxViewportSize;
@@ -298,7 +298,7 @@ void AbstractFramebuffer::read(const Range2Di& rectangle, Image2D& image) {
     bindInternal(FramebufferTarget::Read);
 
     /* Reallocate only if needed */
-    const std::size_t dataSize = Implementation::imageDataSizeFor(image, rectangle.size());
+    const std::size_t dataSize = Magnum::Implementation::imageDataSizeFor(image, rectangle.size());
     Containers::Array<char> data{image.release()};
     if(data.size() < dataSize)
         data = Containers::Array<char>{dataSize};
@@ -325,7 +325,7 @@ void AbstractFramebuffer::read(const Range2Di& rectangle, BufferImage2D& image, 
     bindInternal(FramebufferTarget::Read);
 
     /* Reallocate only if needed */
-    const std::size_t dataSize = Implementation::imageDataSizeFor(image, rectangle.size());
+    const std::size_t dataSize = Magnum::Implementation::imageDataSizeFor(image, rectangle.size());
     if(image.dataSize() < dataSize)
         image.setData(image.storage(), image.format(), image.type(), rectangle.size(), {nullptr, dataSize}, usage);
     else
@@ -677,4 +677,4 @@ void AbstractFramebuffer::copySub3DImplementationDSAEXT(const Range2Di& rectangl
 }
 #endif
 
-}
+}}

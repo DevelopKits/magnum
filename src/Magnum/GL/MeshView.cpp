@@ -34,7 +34,7 @@
 #include "Magnum/GL/Implementation/State.h"
 #include "Magnum/GL/Implementation/MeshState.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 void MeshView::draw(AbstractShaderProgram& shader, std::initializer_list<std::reference_wrapper<MeshView>> meshes) {
     /* Why std::initializer_list doesn't have empty()? */
@@ -170,4 +170,4 @@ void MeshView::draw(AbstractShaderProgram& shader, TransformFeedback& xfb, Unsig
 }
 #endif
 
-}
+}}

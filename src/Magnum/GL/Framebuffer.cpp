@@ -56,7 +56,7 @@
 #include "Magnum/Math/Color.h"
 #endif
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 const Framebuffer::DrawAttachment Framebuffer::DrawAttachment::None = Framebuffer::DrawAttachment(GL_NONE);
 const Framebuffer::BufferAttachment Framebuffer::BufferAttachment::Depth = Framebuffer::BufferAttachment(GL_DEPTH_ATTACHMENT);
@@ -445,4 +445,4 @@ Debug& operator<<(Debug& debug, const Framebuffer::Status value) {
 }
 #endif
 
-}
+}}

@@ -26,7 +26,7 @@
 */
 
 /** @file
- * @brief Class @ref Magnum::Renderer
+ * @brief Class @ref Magnum::GL::Renderer
  */
 
 #include <Corrade/Containers/EnumSet.h>
@@ -36,7 +36,7 @@
 #include "Magnum/GL/OpenGL.h"
 #include "Magnum/GL/visibility.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 namespace Implementation { struct RendererState; }
 
@@ -1646,6 +1646,6 @@ MAGNUM_GL_EXPORT Debug& operator<<(Debug& debug, Renderer::ResetNotificationStra
 MAGNUM_GL_EXPORT Debug& operator<<(Debug& debug, Renderer::GraphicsResetStatus value);
 #endif
 
-}
+}}
 
 #endif

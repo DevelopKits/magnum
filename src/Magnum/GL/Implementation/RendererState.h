@@ -32,7 +32,7 @@
 #include "Magnum/GL/Renderer.h"
 #include "Magnum/Math/Vector3.h"
 
-namespace Magnum { namespace Implementation {
+namespace Magnum { namespace GL { namespace Implementation {
 
 struct RendererState {
     explicit RendererState(Context& context, std::vector<std::string>& extensions);
@@ -75,6 +75,6 @@ struct RendererState {
     PixelStorage packPixelStorage, unpackPixelStorage;
 };
 
-}}
+}}}
 
 #endif

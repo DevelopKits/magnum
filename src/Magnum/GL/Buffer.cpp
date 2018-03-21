@@ -37,7 +37,7 @@
 #endif
 #include "Magnum/GL/Implementation/MeshState.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 #ifndef MAGNUM_TARGET_GLES
 Int Buffer::minMapAlignment() {
@@ -631,4 +631,4 @@ Debug& operator<<(Debug& debug, Buffer::Target value) {
 #endif
 #endif
 
-}
+}}

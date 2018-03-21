@@ -27,7 +27,7 @@
 
 #ifndef MAGNUM_TARGET_WEBGL
 /** @file
- * @brief Class @ref Magnum::DebugOutput, @ref Magnum::DebugMessage, @ref Magnum::DebugGroup
+ * @brief Class @ref Magnum::GL::DebugOutput, @ref Magnum::GL::DebugMessage, @ref Magnum::GL::DebugGroup
  */
 #endif
 
@@ -39,7 +39,7 @@
 #include "Magnum/GL/visibility.h"
 
 #ifndef MAGNUM_TARGET_WEBGL
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 namespace Implementation { struct DebugState; }
 
@@ -805,7 +805,7 @@ class MAGNUM_GL_EXPORT DebugGroup {
 /** @debugoperatorclassenum{Magnum::DebugGroup,Magnum::DebugGroup::Source} */
 MAGNUM_GL_EXPORT Debug& operator<<(Debug& debug, DebugGroup::Source value);
 
-}
+}}
 #else
 #error this header is not available in WebGL build
 #endif

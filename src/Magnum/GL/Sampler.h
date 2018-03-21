@@ -26,14 +26,14 @@
 */
 
 /** @file
- * @brief Class @ref Magnum::Sampler
+ * @brief Class @ref Magnum::GL::Sampler
  */
 
 #include "Magnum/Magnum.h"
 #include "Magnum/GL/OpenGL.h"
 #include "Magnum/GL/visibility.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 /**
 @brief Texture sampler
@@ -297,6 +297,6 @@ MAGNUM_GL_EXPORT Debug& operator<<(Debug& debug, Sampler::CompareFunction value)
 MAGNUM_GL_EXPORT Debug& operator<<(Debug& debug, Sampler::DepthStencilMode value);
 #endif
 
-}
+}}
 
 #endif

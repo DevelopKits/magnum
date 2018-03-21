@@ -26,7 +26,7 @@
 */
 
 /** @file
- * @brief Class @ref Magnum::Shader
+ * @brief Class @ref Magnum::GL::Shader
  */
 
 #include <functional>
@@ -37,7 +37,7 @@
 #include "Magnum/GL/AbstractObject.h"
 #include "Magnum/GL/GL.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 namespace Implementation { struct ShaderState; }
 
@@ -645,6 +645,6 @@ inline Shader& Shader::operator=(Shader&& other) noexcept {
     return *this;
 }
 
-}
+}}
 
 #endif

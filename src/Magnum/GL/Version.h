@@ -26,7 +26,7 @@
 */
 
 /** @file
- * @brief Enum @ref Magnum::Version, function @ref Magnum::version(), @ref Magnum::isVersionES()
+ * @brief Enum @ref Magnum::GL::Version, function @ref Magnum::GL::version(), @ref Magnum::GL::isVersionES()
  */
 
 #include <utility>
@@ -34,7 +34,7 @@
 #include "Magnum/Magnum.h"
 #include "Magnum/GL/visibility.h"
 
-namespace Magnum {
+namespace Magnum { namespace GL {
 
 #ifndef MAGNUM_TARGET_GLES
 namespace Implementation {
@@ -160,6 +160,6 @@ constexpr bool isVersionES(Version) { return true; }
 /** @debugoperatorenum{Magnum::Version} */
 MAGNUM_GL_EXPORT Debug& operator<<(Debug& debug, Version value);
 
-}
+}}
 
 #endif
