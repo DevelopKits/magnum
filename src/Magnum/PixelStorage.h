@@ -60,10 +60,6 @@ to @fn_gl{PixelStore}. See also @ref Context::resetState() and
 @see @ref CompressedPixelStorage
 */
 class MAGNUM_GL_EXPORT PixelStorage {
-    friend GL::AbstractFramebuffer;
-    friend GL::AbstractTexture;
-    friend GL::CubeMapTexture;
-
     public:
         /**
          * @brief Pixel size for given format/type combination (in bytes)
@@ -227,10 +223,6 @@ class MAGNUM_GL_EXPORT PixelStorage {
     #else
     private:
     #endif
-        /* Bool parameter is ugly, but this is implementation detail of
-           internal API so who cares */
-        void MAGNUM_GL_LOCAL applyInternal(bool isUnpack);
-
         #if !(defined(MAGNUM_TARGET_GLES2) && defined(MAGNUM_TARGET_WEBGL))
         Int _rowLength;
         #endif
@@ -240,12 +232,6 @@ class MAGNUM_GL_EXPORT PixelStorage {
         Vector3i _skip;
 
     private:
-        /* Used internally in *Texture::image(), *Texture::subImage(),
-           *Texture::setImage(), *Texture::setSubImage() and
-           *Framebuffer::read() */
-        void MAGNUM_GL_LOCAL applyUnpack();
-        void MAGNUM_GL_LOCAL applyPack() { applyInternal(false); }
-
         #ifndef MAGNUM_TARGET_GLES
         bool _swapBytes;
         #endif
@@ -270,9 +256,6 @@ Includes all parameters from @ref PixelStorage, except for @ref swapBytes() and
 @requires_gl Compressed pixel storage is hardcoded in OpenGL ES and WebGL.
 */
 class MAGNUM_GL_EXPORT CompressedPixelStorage: public PixelStorage {
-    friend GL::AbstractTexture;
-    friend GL::CubeMapTexture;
-
     public:
         /**
          * @brief Default constructor
@@ -359,15 +342,6 @@ class MAGNUM_GL_EXPORT CompressedPixelStorage: public PixelStorage {
         #endif
         using PixelStorage::alignment;
         using PixelStorage::setAlignment;
-
-        /* Bool parameter is ugly, but this is implementation detail of
-           internal API so who cares */
-        void MAGNUM_GL_LOCAL applyInternal(bool isUnpack);
-
-        /* Used internally in *Texture::compressedImage(), *Texture::compressedSubImage(),
-           *Texture::setCompressedImage() and *Texture::setCompressedSubImage() */
-        void MAGNUM_GL_LOCAL applyUnpack() { applyInternal(true); }
-        void MAGNUM_GL_LOCAL applyPack() { applyInternal(false); }
 
         Vector3i _blockSize;
         Int _blockDataSize;
